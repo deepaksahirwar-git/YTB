@@ -62,6 +62,28 @@ MAX_UPLOAD_MB=750
 
 Render supplies `PORT` automatically.
 
+## Render Docker Hosting
+
+If Render says `failed to read dockerfile`, you created the service as a Docker deployment. This package now includes a `Dockerfile`.
+
+Render Docker settings:
+
+```text
+Dockerfile Path: ./Dockerfile
+Root Directory: leave blank if package.json and Dockerfile are in repo root
+```
+
+Environment variables:
+
+```text
+GEMINI_API_KEY=your_real_key
+GEMINI_MODEL=gemini-2.5-flash
+HOST=0.0.0.0
+MAX_UPLOAD_MB=750
+```
+
+Do not set a separate build/start command for Docker mode. Docker uses the Dockerfile.
+
 ## Railway Hosting
 
 1. Upload this project to GitHub.
