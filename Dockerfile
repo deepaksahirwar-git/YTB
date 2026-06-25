@@ -11,7 +11,13 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --prod=false
 
 COPY . .
-RUN pnpm build
+RUN if [ -f src/main.tsx ]; then \
+      pnpm build; \
+    elif [ -f dist/index.html ]; then \
+      echo "Using prebuilt dist folder"; \
+    else \
+      echo "Missing both src/main.tsx and dist/index.html. Upload the full project contents to GitHub." && exit 1; \
+    fi
 
 EXPOSE 8787
 
